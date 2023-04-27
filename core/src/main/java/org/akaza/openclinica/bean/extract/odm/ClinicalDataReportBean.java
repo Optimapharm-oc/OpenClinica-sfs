@@ -186,11 +186,7 @@ public class ClinicalDataReportBean extends OdmXmlReportBean {
                             } 
                             if(printValue) {
                                 Boolean hasElm = false;
-                                String value = StringEscapeUtils.escapeXml(item.getValue());
-                                if(value != null && value.indexOf("&#") >-1) {
-                                	value = item.getValue();
-                                }
-                                xml.append("Value=\"" + value + "\"");
+                                xml.append("Value=\"" + StringEscapeUtils.escapeXml(item.getValue()) + "\"");
 
                                 String muRefOid = item.getMeasurementUnitRef().getElementDefOID();
                                 if (muRefOid != null && muRefOid.length() > 0) {
@@ -377,20 +373,12 @@ public class ClinicalDataReportBean extends OdmXmlReportBean {
                     xml.append(currentIndent + "                      ReasonForChange=\"" + StringEscapeUtils.escapeXml(r) + "\" ");
                 }
                 if (o.length() > 0) {
-                	 String oldValue = StringEscapeUtils.escapeXml(o);
-                     if(oldValue != null && oldValue.indexOf("&#") >-1) {
-                    	 oldValue = o;
-                     }                  
                     xml.append(nls);
-                    xml.append(currentIndent + "                      OldValue=\"" + oldValue + "\" ");
+                    xml.append(currentIndent + "                      OldValue=\"" + StringEscapeUtils.escapeXml(o) + "\" ");
                 }
                 if (n.length() > 0) {
-                	String newValue = StringEscapeUtils.escapeXml(n);
-                    if(newValue != null && newValue.indexOf("&#") >-1) {
-                   	 	newValue = n;
-                    } 
                     xml.append(nls);
-                    xml.append(currentIndent + "                      NewValue=\"" + newValue + "\"");
+                    xml.append(currentIndent + "                      NewValue=\"" + StringEscapeUtils.escapeXml(n) + "\"");
                 }
                 if (vt.length() > 0) {
                     xml.append(nls);
