@@ -14,6 +14,8 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '1.7'
+        distribution: 'oracle'
+        cache: maven
 
     - name: Build with Maven
       run: mvn -DskipTests=true --batch-mode package
